@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -27,6 +28,11 @@ import {
   Clock,
   Book,
   ArrowUpDown,
+  Github,
+  GitFork,
+  Info,
+  Calendar,
+  Link as LinkIcon,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -41,8 +47,20 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { projects } from "@/data/projects";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
 export default function HomeComponent() {
+  const [selectedProject, setSelectedProject] = useState<
+    (typeof projects)[0] | null
+  >(null);
+
   return (
     <div className="min-h-screen bg-[#FAFBFC] dark:bg-[#0A0A0B]">
       <div className="flex flex-col">
@@ -184,17 +202,23 @@ export default function HomeComponent() {
         {/* Main content area avec sidebar de filtres */}
         <main className="bg-[#FAFBFC] dark:bg-[#0A0A0B]">
           <div className="container mx-auto px-6 py-8 max-w-7xl">
-            <div className="flex flex-col gap-3 mb-12">
-              <div className="flex items-center gap-3">
-                <span className="animate-wave text-3xl">👋</span>
-                <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-transparent bg-clip-text">
-                  Welcome to OpenSource Together
-                </h2>
+            <div className="flex flex-col gap-6 mb-16">
+              <div className="relative">
+                <div className="space-y-2">
+                  <h2 className="text-4xl font-bold">
+                    Welcome back{" "}
+                    <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-transparent bg-clip-text">
+                      Byron Love
+                    </span>{" "}
+                    👋
+                  </h2>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl text-gray-600 dark:text-gray-400">
+                      90 projets ont été ajoutés cette semaine
+                    </span>
+                  </div>
+                </div>
               </div>
-              <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl">
-                Join our community of developers and find amazing projects to
-                contribute to
-              </p>
             </div>
 
             <div className="flex gap-8">
@@ -353,6 +377,14 @@ export default function HomeComponent() {
                                 >
                                   Open for contributors
                                 </Badge>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="h-7 w-7 p-0 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+                                  onClick={() => setSelectedProject(project)}
+                                >
+                                  <Info className="h-4 w-4 text-gray-500" />
+                                </Button>
                               </div>
                               <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
                                 {project.description}
@@ -439,11 +471,226 @@ export default function HomeComponent() {
 
         {/* Footer */}
         <footer className="bg-white dark:bg-[#111214] border-t border-gray-100 dark:border-gray-800">
-          <div className="max-w-7xl mx-auto py-6 px-6 text-center text-sm text-gray-500 dark:text-gray-400">
-            &copy; 2025 Open Source Together. All rights reserved.
+          <div className="max-w-7xl mx-auto py-16 px-6">
+            <div className="grid grid-cols-2 gap-16">
+              {/* Colonne de gauche */}
+              <div className="flex flex-col justify-between">
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center">
+                      <Users className="h-6 w-6 text-white" />
+                    </div>
+                    <span className="text-xl font-semibold bg-gradient-to-r from-gray-800 to-gray-600 dark:from-white dark:to-gray-300 text-transparent bg-clip-text">
+                      OpenSource Together
+                    </span>
+                  </div>
+                  <p className="text-base text-gray-600 dark:text-gray-400 max-w-md">
+                    Une plateforme open source créée par la communauté, pour la
+                    communauté. Rejoignez-nous pour construire l'avenir du
+                    développement collaboratif.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-6 mt-8">
+                  <Button
+                    variant="link"
+                    className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    GitHub
+                  </Button>
+                  <Button
+                    variant="link"
+                    className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    Discord
+                  </Button>
+                  <Button
+                    variant="link"
+                    className="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                  >
+                    Twitter
+                  </Button>
+                </div>
+              </div>
+
+              {/* Colonne de droite */}
+              <div className="flex flex-col items-end justify-between">
+                <div className="text-right">
+                  <div className="inline-block bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-purple-500/10 p-8 rounded-2xl">
+                    <div className="flex flex-col items-end gap-6">
+                      <div className="flex items-center gap-2">
+                        <Github className="h-6 w-6 text-gray-400 dark:text-gray-500" />
+                        <div className="h-4 w-[1px] bg-gray-200 dark:bg-gray-700" />
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-yellow-400/10 text-yellow-500 text-sm font-medium">
+                            <Star className="h-4 w-4" />
+                            2.4k
+                          </div>
+                          <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 text-blue-500 text-sm font-medium">
+                            <GitFork className="h-4 w-4" />
+                            432
+                          </div>
+                        </div>
+                      </div>
+                      <Button
+                        size="lg"
+                        className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 rounded-xl font-medium transition-all duration-200 group"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Star className="h-5 w-5 transition-transform group-hover:scale-110" />
+                          <span className="font-medium">Star sur GitHub</span>
+                        </div>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                  <span>Open Source</span>
+                  <span className="block w-1 h-1 rounded-full bg-gray-400" />
+                  <span>Made with 💙</span>
+                  <span className="block w-1 h-1 rounded-full bg-gray-400" />
+                  <span>© 2024</span>
+                </div>
+              </div>
+            </div>
           </div>
         </footer>
       </div>
+
+      {/* Modal */}
+      <Dialog
+        open={selectedProject !== null}
+        onOpenChange={() => setSelectedProject(null)}
+      >
+        <DialogContent className="max-w-3xl">
+          {selectedProject && (
+            <>
+              <DialogHeader>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-16 w-16 overflow-hidden rounded-xl">
+                    <Avvvatars
+                      value={selectedProject.title}
+                      style="shape"
+                      size={64}
+                      border={false}
+                      shadow={true}
+                    />
+                  </div>
+                  <div>
+                    <DialogTitle className="text-2xl mb-2 flex items-center gap-3">
+                      {selectedProject.title}
+                      <Badge
+                        variant="secondary"
+                        className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
+                      >
+                        Open for contributors
+                      </Badge>
+                    </DialogTitle>
+                    <DialogDescription className="text-base">
+                      {selectedProject.description}
+                    </DialogDescription>
+                  </div>
+                </div>
+              </DialogHeader>
+
+              <div className="space-y-8">
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="flex flex-col items-center p-4 bg-gradient-to-br from-yellow-500/5 via-yellow-500/10 to-yellow-500/5 rounded-xl border border-yellow-500/10">
+                    <Star className="h-5 w-5 text-yellow-500 mb-2" />
+                    <div className="text-2xl font-bold text-yellow-500">
+                      {selectedProject.stars}
+                    </div>
+                    <div className="text-sm text-gray-500">Stars</div>
+                  </div>
+
+                  <div className="flex flex-col items-center p-4 bg-gradient-to-br from-blue-500/5 via-blue-500/10 to-blue-500/5 rounded-xl border border-blue-500/10">
+                    <GitFork className="h-5 w-5 text-blue-500 mb-2" />
+                    <div className="text-2xl font-bold text-blue-500">432</div>
+                    <div className="text-sm text-gray-500">Forks</div>
+                  </div>
+
+                  <div className="flex flex-col items-center p-4 bg-gradient-to-br from-green-500/5 via-green-500/10 to-green-500/5 rounded-xl border border-green-500/10">
+                    <Calendar className="h-5 w-5 text-green-500 mb-2" />
+                    <div className="text-2xl font-bold text-green-500">
+                      3 mois
+                    </div>
+                    <div className="text-sm text-gray-500">Actif depuis</div>
+                  </div>
+                </div>
+
+                {/* Technologies */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-3">Technologies</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.tech.map((tech) => (
+                      <Badge
+                        key={tech}
+                        className="bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 px-3 py-1"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Roles */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-3">
+                    Roles recherchés
+                  </h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {selectedProject.roles.map((role) => (
+                      <div
+                        key={role}
+                        className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"
+                      >
+                        <Users className="h-5 w-5 text-gray-400" />
+                        <span>{role}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Creator */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-3">
+                    Créateur du projet
+                  </h3>
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 overflow-hidden rounded-full">
+                      <Avvvatars
+                        value={selectedProject.creator.name}
+                        style="shape"
+                        size={40}
+                      />
+                    </div>
+                    <div>
+                      <div className="font-medium">
+                        {selectedProject.creator.name}
+                      </div>
+                      <div className="text-sm text-gray-500">Project Lead</div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Links */}
+                <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                    <LinkIcon className="h-4 w-4 mr-2" />
+                    Voir le projet
+                  </Button>
+                  <Button variant="outline">
+                    <Github className="h-4 w-4 mr-2" />
+                    Voir sur GitHub
+                  </Button>
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
