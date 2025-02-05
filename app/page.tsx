@@ -26,6 +26,7 @@ import {
   Activity,
   Clock,
   Book,
+  ArrowUpDown,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -39,57 +40,7 @@ import Avvvatars from "avvvatars-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-
-const projects = [
-  {
-    id: 1,
-    title: "EcoTrack",
-    description: "An app to track and reduce carbon footprint",
-    tech: ["React Native", "Node.js", "MongoDB"],
-    roles: ["Frontend Dev", "UI/UX Designer"],
-    creator: {
-      name: "Jane Doe",
-    },
-    stars: 128,
-    isStarred: false,
-  },
-  {
-    id: 2,
-    title: "CodeMentor",
-    description: "Platform connecting coding mentors with students",
-    tech: ["Vue.js", "Django", "PostgreSQL"],
-    roles: ["Backend Dev", "DevOps"],
-    creator: {
-      name: "John Smith",
-    },
-    stars: 75,
-    isStarred: false,
-  },
-  {
-    id: 3,
-    title: "HealthHub",
-    description: "Centralized health data management system",
-    tech: ["React", "Express", "MySQL"],
-    roles: ["Full Stack Dev", "Data Scientist"],
-    creator: {
-      name: "Alice Johnson",
-    },
-    stars: 92,
-    isStarred: false,
-  },
-  {
-    id: 4,
-    title: "Wellness App",
-    description: "Help you to be healthy",
-    tech: ["Kotlin", "Firebase", "Android Studio"],
-    roles: ["Frontend Dev", "UI/UX Designer"],
-    creator: {
-      name: "Erick Jacob",
-    },
-    stars: 12,
-    isStarred: false,
-  },
-];
+import { projects } from "@/data/projects";
 
 export default function HomeComponent() {
   return (
@@ -250,19 +201,6 @@ export default function HomeComponent() {
               {/* Sidebar de filtres */}
               <div className="w-64 flex-shrink-0">
                 <div className="sticky top-8 space-y-6">
-                  {/* Nouvelle section recherche */}
-                  <div className="bg-white dark:bg-[#111214] rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                        <Search className="h-4 w-4 text-gray-400" />
-                      </div>
-                      <Input
-                        placeholder="Search projects..."
-                        className="w-full pl-10 pr-4 py-2 h-9 bg-gray-50/50 hover:bg-gray-50 dark:bg-gray-800/50 dark:hover:bg-gray-800 border-0 ring-1 ring-gray-200 dark:ring-gray-700 hover:ring-blue-500/50 dark:hover:ring-blue-500/30 transition-all focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg"
-                      />
-                    </div>
-                  </div>
-
                   {/* Section Technologies */}
                   <div className="bg-white dark:bg-[#111214] rounded-xl p-4 border border-gray-200 dark:border-gray-800">
                     <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
@@ -343,44 +281,49 @@ export default function HomeComponent() {
                       ))}
                     </div>
                   </div>
-
-                  {/* Section Activité */}
-                  <div className="bg-white dark:bg-[#111214] rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                      Activity
-                    </h3>
-                    <div className="space-y-2">
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="w-full justify-start text-sm"
-                      >
-                        <Activity className="h-4 w-4 mr-2" />
-                        Most Active
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="w-full justify-start text-sm"
-                      >
-                        <Star className="h-4 w-4 mr-2" />
-                        Most Starred
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="w-full justify-start text-sm"
-                      >
-                        <Clock className="h-4 w-4 mr-2" />
-                        Recently Added
-                      </Button>
-                    </div>
-                  </div>
                 </div>
               </div>
 
               {/* Liste des projets - reste inchangée */}
               <div className="flex-1">
+                {/* Nouvelle position de la barre de recherche avec tri */}
+                <div className="mb-6 flex gap-3 items-center">
+                  <div className="relative flex-1 max-w-xl">
+                    <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                      <Search className="h-4 w-4 text-gray-400" />
+                    </div>
+                    <Input
+                      placeholder="Rechercher des projets..."
+                      className="w-full pl-10 pr-4 py-2 h-10 bg-white dark:bg-[#111214] hover:bg-gray-50 dark:hover:bg-gray-800/50 border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 dark:hover:border-blue-500/30 transition-all focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg"
+                    />
+                  </div>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="flex items-center gap-2 min-w-[140px]"
+                      >
+                        <Clock className="h-4 w-4" />
+                        Plus récents
+                        <ChevronDown className="h-4 w-4 ml-auto" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-[140px]">
+                      <DropdownMenuItem className="flex items-center">
+                        <Star className="h-4 w-4 mr-2" />
+                        Plus populaires
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="flex items-center">
+                        <Clock className="h-4 w-4 mr-2" />
+                        Plus récents
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="flex items-center">
+                        <Activity className="h-4 w-4 mr-2" />
+                        Plus actifs
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
                 <div className="flex flex-col gap-4">
                   {projects.map((project) => (
                     <Card
