@@ -33,6 +33,13 @@ import {
   Info,
   Calendar,
   Link as LinkIcon,
+  Code,
+  Brain,
+  Cloud,
+  Blocks,
+  Shield,
+  Globe,
+  Server,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -54,12 +61,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
+  DialogFooter,
 } from "@/components/ui/dialog";
 
 export default function HomeComponent() {
   const [selectedProject, setSelectedProject] = useState<
     (typeof projects)[0] | null
   >(null);
+  const [showTechModal, setShowTechModal] = useState(false);
+  const [activeTab, setActiveTab] = useState(0);
+  const [selectedFilters, setSelectedFilters] = useState(0);
 
   return (
     <div className="min-h-screen bg-[#FAFBFC] dark:bg-[#0A0A0B]">
@@ -225,84 +236,150 @@ export default function HomeComponent() {
               {/* Sidebar de filtres */}
               <div className="w-64 flex-shrink-0">
                 <div className="sticky top-8 space-y-6">
-                  {/* Section Technologies */}
-                  <div className="bg-white dark:bg-[#111214] rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                      Technologies
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {[
-                        "React",
-                        "Vue",
-                        "Node.js",
-                        "Python",
-                        "TypeScript",
-                        "MongoDB",
-                        "PostgreSQL",
-                      ].map((tech) => (
+                  {/* Section Filtres unifiée */}
+                  <div className="bg-white dark:bg-[#111214] rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+                    <div className="p-4 border-b border-gray-100 dark:border-gray-800">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+                          Filtres
+                        </h3>
                         <Button
-                          key={tech}
                           variant="ghost"
                           size="sm"
-                          className="h-7 text-xs bg-gray-50 dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20"
+                          className="text-xs text-gray-500 hover:text-blue-500"
+                          onClick={() => setShowTechModal(true)}
                         >
-                          {tech}
+                          Voir tout
                         </Button>
-                      ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Section Roles */}
-                  <div className="bg-white dark:bg-[#111214] rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                      Roles Needed
-                    </h3>
-                    <div className="space-y-2">
-                      {[
-                        "Frontend",
-                        "Backend",
-                        "Full Stack",
-                        "DevOps",
-                        "UI/UX",
-                        "Data Science",
-                      ].map((role) => (
-                        <div key={role} className="flex items-center">
-                          <Checkbox id={role} className="rounded" />
-                          <label
-                            htmlFor={role}
-                            className="text-sm text-gray-600 dark:text-gray-400 ml-2 cursor-pointer"
+                    {/* Technologies */}
+                    <div className="p-4 border-b border-gray-100 dark:border-gray-800">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2">
+                          <Code className="h-4 w-4 text-gray-400" />
+                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                            Technologies
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="relative mb-3">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+                        <Input
+                          placeholder="Rechercher..."
+                          className="w-full pl-10 h-9 bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700"
+                        />
+                      </div>
+
+                      <div className="flex flex-wrap gap-1.5">
+                        {[
+                          { name: "JavaScript", count: 156, color: "blue" },
+                          { name: "Python", count: 142, color: "yellow" },
+                          { name: "React", count: 134, color: "cyan" },
+                          { name: "AWS", count: 123, color: "orange" },
+                          { name: "TypeScript", count: 98, color: "blue" },
+                        ].map((tech) => (
+                          <Button
+                            key={tech.name}
+                            variant="ghost"
+                            size="sm"
+                            className={`h-7 text-xs group relative transition-all duration-200 bg-${tech.color}-50 text-${tech.color}-600 hover:bg-${tech.color}-100 dark:bg-${tech.color}-900/20 dark:text-${tech.color}-400 dark:hover:bg-${tech.color}-900/30`}
                           >
-                            {role}
-                          </label>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Section Difficulté */}
-                  <div className="bg-white dark:bg-[#111214] rounded-xl p-4 border border-gray-200 dark:border-gray-800">
-                    <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
-                      Difficulty Level
-                    </h3>
-                    <div className="space-y-2">
-                      {["Beginner", "Intermediate", "Advanced"].map((level) => (
-                        <div key={level} className="flex items-center">
-                          <RadioGroup defaultValue="beginner">
-                            <div className="flex items-center space-x-2">
-                              <RadioGroupItem
-                                value={level.toLowerCase()}
-                                id={level}
-                              />
-                              <Label
-                                htmlFor={level}
-                                className="text-sm text-gray-600 dark:text-gray-400"
-                              >
-                                {level}
-                              </Label>
+                            <div className="flex items-center gap-1.5">
+                              {tech.name}
+                              <span className="text-[10px] text-gray-400 dark:text-gray-500 group-hover:text-${tech.color}-500">
+                                ({tech.count})
+                              </span>
                             </div>
-                          </RadioGroup>
-                        </div>
-                      ))}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Rôles */}
+                    <div className="p-4 border-b border-gray-100 dark:border-gray-800">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Users className="h-4 w-4 text-gray-400" />
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Rôles recherchés
+                        </span>
+                      </div>
+                      <div className="space-y-2">
+                        {[
+                          { name: "Frontend", count: 234 },
+                          { name: "Backend", count: 189 },
+                          { name: "Full Stack", count: 156 },
+                          { name: "DevOps", count: 98 },
+                          { name: "UI/UX", count: 76 },
+                        ].map((role) => (
+                          <div key={role.name} className="flex items-center">
+                            <Checkbox
+                              id={role.name}
+                              className="rounded data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
+                            />
+                            <label
+                              htmlFor={role.name}
+                              className="flex items-center justify-between flex-1 ml-2 text-sm"
+                            >
+                              <span className="text-gray-700 dark:text-gray-300">
+                                {role.name}
+                              </span>
+                              <span className="text-xs text-gray-400">
+                                {role.count}
+                              </span>
+                            </label>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Niveau de difficulté */}
+                    <div className="p-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Activity className="h-4 w-4 text-gray-400" />
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Niveau de difficulté
+                        </span>
+                      </div>
+                      <RadioGroup defaultValue="beginner" className="space-y-2">
+                        {[
+                          { value: "beginner", label: "Débutant", count: 245 },
+                          {
+                            value: "intermediate",
+                            label: "Intermédiaire",
+                            count: 189,
+                          },
+                          { value: "advanced", label: "Avancé", count: 134 },
+                        ].map((level) => (
+                          <div key={level.value} className="flex items-center">
+                            <RadioGroupItem
+                              value={level.value}
+                              id={level.value}
+                              className="data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500"
+                            />
+                            <label
+                              htmlFor={level.value}
+                              className="flex items-center justify-between flex-1 ml-2 text-sm"
+                            >
+                              <span className="text-gray-700 dark:text-gray-300">
+                                {level.label}
+                              </span>
+                              <span className="text-xs text-gray-400">
+                                {level.count}
+                              </span>
+                            </label>
+                          </div>
+                        ))}
+                      </RadioGroup>
+                    </div>
+
+                    {/* Bouton Appliquer */}
+                    <div className="p-4 bg-gray-50 dark:bg-gray-800/50 border-t border-gray-100 dark:border-gray-800">
+                      <Button className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40">
+                        Appliquer les filtres
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -694,6 +771,13 @@ export default function HomeComponent() {
               </div>
             </>
           )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Modale Filtres */}
+      <Dialog open={showTechModal} onOpenChange={setShowTechModal}>
+        <DialogContent className="max-w-4xl">
+          {/* Contenu de la modale à recréer */}
         </DialogContent>
       </Dialog>
     </div>
