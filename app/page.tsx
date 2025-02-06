@@ -437,7 +437,12 @@ export default function HomeComponent() {
                               variant="ghost"
                               className="text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
                             >
-                              View Project →
+                              <Link
+                                href={`/project/${project.id}`}
+                                className="flex items-center"
+                              >
+                                View Project →
+                              </Link>
                             </Button>
                           </div>
                         </div>
