@@ -6,12 +6,48 @@ import {
   ArrowRight,
   ArrowLeft,
   CheckCircle,
+  Copy,
+  Plus,
+  MoreVertical,
+  Trash2,
 } from "lucide-react";
 import Image from "next/image";
 
+// Ajout des types pour les horaires
+interface TimeBlock {
+  start: string;
+  end: string;
+}
+
+interface DaySchedule {
+  isOpen: boolean;
+  timeBlocks: TimeBlock[];
+}
+
+interface WeekSchedule {
+  [key: string]: DaySchedule;
+}
+
+const defaultTimeBlocks: TimeBlock[] = [
+  { start: "11:30", end: "14:30" },
+  { start: "18:30", end: "22:30" }
+];
+
+const initialSchedule: WeekSchedule = {
+  lundi: { isOpen: true, timeBlocks: [...defaultTimeBlocks] },
+  mardi: { isOpen: true, timeBlocks: [...defaultTimeBlocks] },
+  mercredi: { isOpen: true, timeBlocks: [...defaultTimeBlocks] },
+  jeudi: { isOpen: true, timeBlocks: [...defaultTimeBlocks] },
+  vendredi: { isOpen: true, timeBlocks: [...defaultTimeBlocks] },
+  samedi: { isOpen: true, timeBlocks: [...defaultTimeBlocks] },
+  dimanche: { isOpen: false, timeBlocks: [] },
+};
+
 export default function ChataigneCreateLocation() {
 	const [currentStep, setCurrentStep] = useState(1);
-	const totalSteps = 4;
+	const [schedule, setSchedule] = useState<WeekSchedule>(initialSchedule);
+	const totalSteps = 5;
+	const [activeDay, setActiveDay] = useState('lundi');
 
 	const nextStep = () => {
 		if (currentStep < totalSteps) {
@@ -45,11 +81,75 @@ export default function ChataigneCreateLocation() {
 		{
 			title: "Localisation de votre restaurant",
 			description: "Aidez vos clients à vous trouver en indiquant précisément où vous êtes."
+		},
+		{
+			title: "Horaires d'ouverture",
+			description: "Définissez vos horaires d'ouverture pour informer vos clients de votre disponibilité."
 		}
 	];
 
 	// Labels courts pour les étapes
-	const stepLabels = ["Nom", "Logo", "Infos", "Adresse"];
+	const stepLabels = ["Nom", "Logo", "Infos", "Adresse", "Horaires"];
+
+	// Ajout des fonctions de gestion des horaires
+	const toggleDayOpen = (day: string) => {
+		setSchedule(prev => ({
+			...prev,
+			[day]: {
+				...prev[day],
+				isOpen: !prev[day].isOpen,
+				timeBlocks: !prev[day].isOpen ? defaultTimeBlocks : []
+			}
+		}));
+	};
+
+	const addTimeBlock = (day: string) => {
+		setSchedule(prev => ({
+			...prev,
+			[day]: {
+				...prev[day],
+				timeBlocks: [...prev[day].timeBlocks, { start: "09:00", end: "18:00" }]
+			}
+		}));
+	};
+
+	const removeTimeBlock = (day: string, index: number) => {
+		setSchedule(prev => ({
+			...prev,
+			[day]: {
+				...prev[day],
+				timeBlocks: prev[day].timeBlocks.filter((_, i) => i !== index)
+			}
+		}));
+	};
+
+	const updateTimeBlock = (day: string, index: number, field: 'start' | 'end', value: string) => {
+		setSchedule(prev => ({
+			...prev,
+			[day]: {
+				...prev[day],
+				timeBlocks: prev[day].timeBlocks.map((block, i) => 
+					i === index ? { ...block, [field]: value } : block
+				)
+			}
+		}));
+	};
+
+	const copyToAllDays = (sourceDay: string) => {
+		const sourceDaySchedule = schedule[sourceDay];
+		setSchedule(prev => {
+			const newSchedule = { ...prev };
+			Object.keys(newSchedule).forEach(day => {
+				if (day !== sourceDay) {
+					newSchedule[day] = {
+						isOpen: sourceDaySchedule.isOpen,
+						timeBlocks: [...sourceDaySchedule.timeBlocks]
+					};
+				}
+			});
+			return newSchedule;
+		});
+	};
 
 	return (
 		<div className="min-h-screen bg-white">
@@ -274,6 +374,99 @@ export default function ChataigneCreateLocation() {
 												className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#25D366] focus:border-[#25D366]" 
 											/>
 										</div>
+									</div>
+								</div>
+							</div>
+						)}
+						
+						{/* Step 5: Opening Hours - Version ultra simplifiée */}
+						{currentStep === 5 && (
+							<div className="space-y-6">
+								{/* Interface compacte avec tabs */}
+								<div className="bg-white rounded-lg border border-gray-200">
+									{/* Tabs des jours - Version minimaliste */}
+									<div className="flex border-b border-gray-100">
+										{Object.entries(schedule).map(([day, daySchedule]) => (
+											<button
+												key={day}
+												onClick={() => setActiveDay(day)}
+												className={`flex-1 py-3 text-sm font-medium relative ${
+													activeDay === day 
+														? 'border-b-2 border-[#25D366]' 
+														: ''
+												} ${
+													daySchedule.isOpen 
+														? 'text-[#25D366]' 
+														: 'text-gray-400'
+												}`}
+											>
+												{day.slice(0, 3).toUpperCase()}
+											</button>
+										))}
+									</div>
+
+									{/* Contenu du jour sélectionné */}
+									<div className="p-6">
+										<div className="flex items-center justify-between mb-4">
+											<div className="flex items-center gap-3">
+												<button
+													onClick={() => toggleDayOpen(activeDay)}
+													className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors
+														${schedule[activeDay].isOpen ? 'bg-[#25D366]' : 'bg-gray-200'}`}
+												>
+													<span
+														className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform
+															${schedule[activeDay].isOpen ? 'translate-x-6' : 'translate-x-1'}`}
+													/>
+												</button>
+												<span className="font-medium capitalize">{activeDay}</span>
+											</div>
+											
+											<button 
+												onClick={() => copyToAllDays(activeDay)}
+												className="text-sm text-gray-500 font-medium flex items-center gap-2"
+											>
+												<Copy className="w-4 h-4" />
+												Appliquer à tous les jours
+											</button>
+										</div>
+
+										{schedule[activeDay].isOpen && (
+											<div className="space-y-3">
+												{schedule[activeDay].timeBlocks.map((block, index) => (
+													<div key={index} className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+														<div className="flex-1 grid grid-cols-2 gap-3">
+															<input
+																type="time"
+																value={block.start}
+																onChange={(e) => updateTimeBlock(activeDay, index, 'start', e.target.value)}
+																className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#25D366] focus:border-[#25D366]"
+															/>
+															<input
+																type="time"
+																value={block.end}
+																onChange={(e) => updateTimeBlock(activeDay, index, 'end', e.target.value)}
+																className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#25D366] focus:border-[#25D366]"
+															/>
+														</div>
+														<button
+															onClick={() => removeTimeBlock(activeDay, index)}
+															className="text-gray-400 hover:text-red-500 transition-colors"
+														>
+															<Trash2 className="w-4 h-4" />
+														</button>
+													</div>
+												))}
+
+												<button
+													onClick={() => addTimeBlock(activeDay)}
+													className="w-full py-3 text-sm text-gray-500 font-medium flex items-center justify-center gap-2 border-2 border-dashed border-gray-200 rounded-lg  transition-colors"
+												>
+													<Plus className="w-4 h-4" />
+													Ajouter une plage horaire
+												</button>
+											</div>
+										)}
 									</div>
 								</div>
 							</div>
