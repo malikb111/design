@@ -47,7 +47,6 @@ export default function ChataigneCreateLocation() {
 	const [currentStep, setCurrentStep] = useState(1);
 	const [schedule, setSchedule] = useState<WeekSchedule>(initialSchedule);
 	const totalSteps = 5;
-	const [activeDay, setActiveDay] = useState('lundi');
 
 	const nextStep = () => {
 		if (currentStep < totalSteps) {
@@ -379,78 +378,61 @@ export default function ChataigneCreateLocation() {
 							</div>
 						)}
 						
-						{/* Step 5: Opening Hours - Version ultra simplifiée */}
+						{/* Step 5: Opening Hours */}
 						{currentStep === 5 && (
 							<div className="space-y-6">
-								{/* Interface compacte avec tabs */}
-								<div className="bg-white rounded-lg border border-gray-200">
-									{/* Tabs des jours - Version minimaliste */}
-									<div className="flex border-b border-gray-100">
-										{Object.entries(schedule).map(([day, daySchedule]) => (
-											<button
-												key={day}
-												onClick={() => setActiveDay(day)}
-												className={`flex-1 py-3 text-sm font-medium relative ${
-													activeDay === day 
-														? 'border-b-2 border-[#25D366]' 
-														: ''
-												} ${
-													daySchedule.isOpen 
-														? 'text-[#25D366]' 
-														: 'text-gray-400'
-												}`}
-											>
-												{day.slice(0, 3).toUpperCase()}
-											</button>
-										))}
-									</div>
+								<div className="flex items-center justify-between mb-6">
+									<h3 className="text-lg font-medium text-gray-900">Horaires hebdomadaires</h3>
+									<button 
+										className="text-sm text-[#25D366] hover:text-[#1fa855] font-medium flex items-center gap-2"
+										onClick={() => copyToAllDays('lundi')}
+									>
+										<Copy className="w-4 h-4" />
+										Copier vers tous les jours
+									</button>
+								</div>
 
-									{/* Contenu du jour sélectionné */}
-									<div className="p-6">
-										<div className="flex items-center justify-between mb-4">
+								{Object.entries(schedule).map(([day, daySchedule]) => (
+									<div key={day} className="bg-white rounded-lg border border-gray-200 p-4 transition-all hover:border-[#25D366]/30">
+										<div className="flex items-center justify-between mb-3">
 											<div className="flex items-center gap-3">
 												<button
-													onClick={() => toggleDayOpen(activeDay)}
+													onClick={() => toggleDayOpen(day)}
 													className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors
-														${schedule[activeDay].isOpen ? 'bg-[#25D366]' : 'bg-gray-200'}`}
+														${daySchedule.isOpen ? 'bg-[#25D366]' : 'bg-gray-200'}`}
 												>
 													<span
 														className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform
-															${schedule[activeDay].isOpen ? 'translate-x-6' : 'translate-x-1'}`}
+															${daySchedule.isOpen ? 'translate-x-6' : 'translate-x-1'}`}
 													/>
 												</button>
-												<span className="font-medium capitalize">{activeDay}</span>
+												<span className="font-medium capitalize">{day}</span>
 											</div>
-											
-											<button 
-												onClick={() => copyToAllDays(activeDay)}
-												className="text-sm text-gray-500 font-medium flex items-center gap-2"
-											>
-												<Copy className="w-4 h-4" />
-												Appliquer à tous les jours
+											<button className="text-gray-400 hover:text-gray-600">
+												<MoreVertical className="w-4 h-4" />
 											</button>
 										</div>
 
-										{schedule[activeDay].isOpen && (
+										{daySchedule.isOpen && (
 											<div className="space-y-3">
-												{schedule[activeDay].timeBlocks.map((block, index) => (
-													<div key={index} className="flex items-center gap-3 bg-gray-50 p-3 rounded-lg">
+												{daySchedule.timeBlocks.map((block, index) => (
+													<div key={index} className="flex items-center gap-3">
 														<div className="flex-1 grid grid-cols-2 gap-3">
 															<input
 																type="time"
 																value={block.start}
-																onChange={(e) => updateTimeBlock(activeDay, index, 'start', e.target.value)}
+																onChange={(e) => updateTimeBlock(day, index, 'start', e.target.value)}
 																className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#25D366] focus:border-[#25D366]"
 															/>
 															<input
 																type="time"
 																value={block.end}
-																onChange={(e) => updateTimeBlock(activeDay, index, 'end', e.target.value)}
+																onChange={(e) => updateTimeBlock(day, index, 'end', e.target.value)}
 																className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-[#25D366] focus:border-[#25D366]"
 															/>
 														</div>
 														<button
-															onClick={() => removeTimeBlock(activeDay, index)}
+															onClick={() => removeTimeBlock(day, index)}
 															className="text-gray-400 hover:text-red-500 transition-colors"
 														>
 															<Trash2 className="w-4 h-4" />
@@ -459,8 +441,8 @@ export default function ChataigneCreateLocation() {
 												))}
 
 												<button
-													onClick={() => addTimeBlock(activeDay)}
-													className="w-full py-3 text-sm text-gray-500 font-medium flex items-center justify-center gap-2 border-2 border-dashed border-gray-200 rounded-lg  transition-colors"
+													onClick={() => addTimeBlock(day)}
+													className="mt-2 text-sm text-[#25D366] hover:text-[#1fa855] font-medium flex items-center gap-2"
 												>
 													<Plus className="w-4 h-4" />
 													Ajouter une plage horaire
@@ -468,7 +450,7 @@ export default function ChataigneCreateLocation() {
 											</div>
 										)}
 									</div>
-								</div>
+								))}
 							</div>
 						)}
 						
