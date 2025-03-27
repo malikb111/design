@@ -1,0 +1,95 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Paramètres de l'Application
+
+Voici une liste structurée des actions possibles via les paramètres de votre application, réparties par onglet :
+
+---
+
+## 1. Onglet Informations
+
+### Photo de profil
+- Charger/mettre à jour la photo affichée sur votre profil dans les différentes intégrations.
+
+### Nom de l'établissement
+- Modifier le nom de l’établissement qui identifie votre entreprise sur toutes les intégrations.
+
+### Informations générales
+- Choisir et configurer la devise (ex. CHF).
+- Sélectionner le fuseau horaire (ex. Europe/Zurich).
+
+### Adresse de l'établissement
+- Mettre à jour l’adresse (ex. Chemin de Budron F3).
+- Saisir le complément d’adresse (le cas échéant).
+- Indiquer la ville (ex. Le Mont-sur-Lausanne).
+- Préciser le code postal (ex. 1052).
+- Sélectionner le pays (ex. CH).
+
+### Informations de contact
+- Mettre à jour le numéro de téléphone pour contacter l’établissement (ex. +41789668845).
+
+### Paramètres de commande
+- Définir le temps de préparation moyen (en heures/minutes).
+- Saisir le montant minimum de commande (en CHF).
+
+### Sauvegarde
+- Enregistrer toutes les modifications effectuées via le bouton « Sauvegarder ».
+
+---
+
+## 2. Onglet Horaires d’ouvertures
+
+### Horaires standards
+- Définir les heures d’ouverture et de fermeture pour chaque jour de la semaine (lundi à dimanche).
+- Pour chaque jour, il est possible de :
+  - Modifier l’heure d’ouverture (ex. 11:00) et l’heure de fermeture (ex. 21:30).
+  - Ajouter une plage horaire pour des horaires fractionnés.
+
+### Horaires spéciaux
+- *(À venir)* Configurer des horaires particuliers pour certains jours de l’année (jours fériés, événements spéciaux...).
+
+### Sauvegarde
+- Enregistrer les modifications via le bouton « Sauvegarder ».
+
+---
+
+## 3. Onglet Livraison
+
+### Mode de livraison
+- Choisir le mode de livraison (ex. « Par code postal »).
+
+### Configuration des zones de livraison
+- Pour chaque zone définie par un code postal, il est possible de :
+  - Saisir/modifier le code postal concerné.
+  - Définir le montant minimum de commande requis (en CHF).
+  - Indiquer les frais de livraison (en CHF).
+
+### Gestion des codes postaux
+- Modifier les informations existantes pour chaque code postal.
+- Ajouter un code postal pour étendre ou modifier la zone de livraison.
+
+### Sauvegarde
+- Enregistrer les paramètres de livraison via le bouton « Sauvegarder ».
+
+---
+
+## 4. Onglet Paiement
+
+### Mode de paiement
+- Sélectionner le mode de paiement principal pour l’établissement (ex. « En magasin »).
+
+### Méthodes de paiement en livraison
+- Choisir les méthodes de paiement acceptées lors de la livraison, parmi les options proposées :
+  - Espèces
+  - Carte bancaire
+  - Twint
+
+### Sauvegarde
+- Enregistrer les modifications via le bouton « Sauvegarder ».
+
+---
+
+Cette présentation regroupe l’ensemble des fonctionnalités accessibles via les paramètres de votre application. Elle permet de configurer l’identité de l’établissement, ses horaires, ses zones de livraison, et ses options de paiement.

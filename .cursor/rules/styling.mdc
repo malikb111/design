@@ -1,0 +1,214 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Synthèse de la Direction Artistique de l'Application "Châtaigne"
+
+Ce document offre une description exhaustive de la direction artistique de l’application, couvrant les modules **Catalog**, **Location** et **Analytics**. Il synthétise l’ensemble des informations qu’un designer senior UX/UI doit connaître : typographie détaillée, espacements, paddings, palette de couleurs, organisation des layouts et comportements interactifs. L’objectif est de fournir une vision complète de l’identité visuelle, en termes qui permettraient même à une personne malvoyante de comprendre la structure et l’esprit de l’interface.
+
+---
+
+## 1. Architecture et Modules de l’Application
+
+L’application "Châtaigne" est segmentée en trois modules principaux, chacun respectant une charte visuelle cohérente :
+
+- **Catalog (Châtaigne Catalog)**
+  - **Fonction** : Gestion et présentation des produits et services.
+  - **Interface** : Grille de cartes réutilisables, filtres dynamiques en haut de page ou en barre latérale, pagination ou scroll infini.
+  
+- **Location (Châtaigne Location)**
+  - **Fonction** : Gestion de la localisation, adresses et intégration cartographique.
+  - **Interface** : Formulaires de saisie optimisés et carte interactive pour visualiser les établissements.
+  
+- **Analytics (Châtaigne Analytics)**
+  - **Fonction** : Visualisation de données, statistiques et rapports sous forme de dashboards.
+  - **Interface** : Widgets modulaires, graphiques interactifs, et indicateurs clés organisés de façon modulable.
+
+---
+
+## 2. Typographie
+
+La typographie est choisie pour garantir clarté, hiérarchie et accessibilité. La police principale utilisée est une sans-serif moderne, inspirée des recommandations Material Design.
+
+- **Police principale** :  
+  - **Roboto** (ou équivalent)  
+  - **Usage** : Intégralité de l’interface pour une cohérence moderne.
+
+- **Titres et Hiérarchisation** :
+  - **H1** (Titre principal de page)  
+    - Taille : \(32px\)  
+    - Poids : \(700\) (Bold)  
+    - Couleur : \(\#212121\)  
+    - Rôle : Identifier clairement les sections majeures.
+  
+  - **H2** (Sous-titres de sections)  
+    - Taille : \(24px\)  
+    - Poids : \(600\) (Semi-bold)  
+    - Couleur : \(\#333333\)
+  
+  - **H3 / Titres de cartes et petits panneaux**  
+    - Taille : \(20px\)  
+    - Poids : \(500\)  
+    - Couleur : \(\#424242\)
+
+- **Corps de texte et éléments de contenu** :  
+  - Taille : \(16px\)  
+  - Poids : \(400\) (Regular)  
+  - Couleur principale : \(\#212121\) (pour le texte important)  
+  - Couleur secondaire : \(\#757575\) (pour les annotations ou informations complémentaires)
+
+- **Éléments interactifs (boutons, liens)** :  
+  - Taille : \(14px\) à \(16px\)  
+  - Poids : Entre \(500\) et \(600\) pour renforcer l’appel à l’action  
+  - Espacement de lettres légèrement augmenté pour une lisibilité accrue.
+
+---
+
+## 3. Espacements, Marges et Paddings
+
+Les espacements et le traitement de l’espace blanc sont essentiels pour un design aéré et intuitif.
+
+- **Grille et Structure du Layout** :
+  - Disposition en **grille à 12 colonnes** sur grand écran, garantissant une mise en page modulable et responsive.
+  - Adaptation sur mobile et tablette avec empilement vertical des composants et marges ajustées.
+
+- **Espacements internes (Paddings)** :
+  - **Cards, Boutons, et Formulaires** :  
+    - Padding standard de \(16px\), pouvant être étendu à \(24px\) voire \(32px\) pour des zones de contenu importantes.
+  - **Icônes et éléments graphiques** :  
+    - Padding d’environ \(4px\) pour assurer une séparation nette entre l’icône et le texte associé.
+
+- **Marges externes** :
+  - Espacement entre les composants : généralement entre \(20px\) et \(24px\).
+  - Séparation horizontale dans la grille : environ \(16px\) entre chaque colonne.
+
+- **Utilisation de l'espace blanc** :
+  - Accent mis sur la clarté et la non-surcharge visuelle.
+  - Les zones de contenu bénéficient d’un espace généreux pour guider l’utilisateur sans distraction.
+
+---
+
+## 4. Palette de Couleurs et Thématique Visuelle
+
+La palette a été conçue pour refléter une identité moderne, chaleureuse et accessible.
+
+- **Couleur principale** :
+  - **Vert WhatsApp** (\(\#25D366\))  
+    - **Usage** : Boutons primaires, en-têtes de sections, liens actifs et actions importantes.
+  
+- **Accents et Couleur Thématique "Châtaigne"** :
+  - **Accent Châtaigne** : Teinte marron authentique (\(\#8B4513\) ou une variante similaire)  
+    - **Usage** : Élément de marque, détails graphiques et certains call-to-action.
+  - **Accent Secondaire / Jaune Doré** : (\(\#FFCA28\))  
+    - **Usage** : Pour attirer l’attention sur certaines actions ou indicateurs.
+
+- **Couleurs Neutres** :
+  - **Fond** : Blanc pur (\(\#FFFFFF\)) ou gris très clair (\(\#F5F5F5\)) pour les zones de contenu.
+  - **Texte** : Principalement noir ou gris foncé (\(\#212121\)), avec des textes secondaires en gris moyen (\(\#757575\)).
+  - **Séparateurs** : Ligne de séparation discrète en gris clair (\(\#E0E0E0\)).
+
+- **Interactions et États** :
+  - **Hover / Focus** : Déclinaisons légèrement plus saturées ou une modification de luminosité du vert (\(\#25D366\)) pour un feedback visuel immédiat.
+  - **Transitions** : Animations douces (environ \(200ms\) avec easing « ease-in-out ») pour indiquer les interactions.
+
+---
+
+## 5. Organisation du Layout et Navigation
+
+La structure de l’interface assure à la fois une navigation fluide et une présentation claire de l’information.
+
+- **Structure Globale** :
+  - **Header** :  
+    - Contient le logo, la navigation principale et des icônes pour les notifications et le profil.
+    - Design épuré, fond neutre ou reprenant la couleur principale selon le contexte.
+  
+  - **Barre latérale (Sidebar)** :
+    - Visible sur desktop ; contient le menu de navigation inter-modules.
+    - Peut être rétractée ou fixe selon la résolution d’écran.
+  
+  - **Contenu principal** :
+    - Zone dynamique où s’affichent les pages des modules (catalog, location, analytics, réglages).
+    - Utilisation de cards, grilles et widgets pour structurer l’information.
+  
+  - **Footer** :
+    - Informations secondaires, liens institutionnels (conditions d’utilisation, politique de confidentialité) et réseaux sociaux.
+  
+- **Dispositions Spécifiques par Module** :
+  - **Catalog** :
+    - Grille de cartes produits avec images, noms, et descriptions.
+    - Filtres et tris disponibles en haut ou dans la sidebar.
+  
+  - **Location** :
+    - Formulaires de saisie avec champs bien espacés.
+    - Intégration d’une carte interactive pour la validation des adresses.
+  
+  - **Analytics** :
+    - Dashboards composés de widgets et de graphiques.
+    - Possibilité de réarranger les éléments pour personnaliser l’affichage.
+
+- **Design Responsive** :
+  - Sur mobile, le passage à un menu hamburger et des composants empilés verticalement pour faciliter le toucher.
+  - Les boutons et éléments interactifs respectent une hauteur minimale de \(44px\) pour l’accessibilité tactile.
+
+---
+
+## 6. Composants UI et Interactions
+
+Chaque composant a été pensé pour offrir une interaction fluide et intuitive.
+
+- **Boutons** :
+  - **Bouton primaire** :  
+    - Fond : Vert WhatsApp (\(\#25D366\))  
+    - Texte : Blanc, avec des coins arrondis (rayon de \(4px\) à \(8px\)).  
+    - Padding : Horizontale \(16px\), verticale \(8px\).  
+    - Transitions : \(200ms\) pour hover et clic, garantissant un retour d’information immédiat.
+    - **Note** : Tous les boutons d'actions de l'interface utilisent cette teinte de vert pour assurer une reconnaissance rapide et une cohérence visuelle.
+  
+  - **Bouton secondaire** :  
+    - Fond : Transparent ou gris clair avec une bordure discrète.
+    - Texte : Utilise la teinte principale ou une nuance légèrement assombrie, avec une augmentation du poids lors du hover.
+
+- **Cartes (Cards)** :
+  - Fond : Blanc ou gris très clair.
+  - Coins arrondis : Environ \(8px\).
+  - Ombres portées : Discrètes (\(0 2px 4px rgba(0, 0, 0, 0.1)\)) pour donner de la profondeur.
+  - Padding interne : Standard de \(16px\) à \(24px\) pour une lecture aisée.
+
+- **Listes et Tableaux** :
+  - Séparateurs fins : \(1px\) en \(\#E0E0E0\).  
+  - Titres en gras et légèrement agrandis par rapport au contenu.
+
+- **Icônes** :
+  - Utilisation d’icônes vectorielles (inspirées de Material Icons ou FontAwesome).
+  - Taille standard : \(24px\) avec des espaces de \(4px\) autour pour ne pas surcharger l’interface.
+
+- **Formulaires** :
+  - Champs de saisie avec padding de \(12px\), marges entre champs de \(8px\).
+  - Validation avec messages d’erreur en rouge (\(\#D32F2F\)) pour attirer l’attention.
+
+---
+
+## 7. Accessibilité et Comportement Dynamique
+
+L’interface est conçue pour être accessible et offrir une expérience cohérente à tous les utilisateurs.
+
+- **Accessibilité** :
+  - Respect des normes WCAG avec des rapports de contraste élevés entre le texte et le fond.
+  - Indicateurs visuels clairs pour le focus sur les champs et boutons (bordures ou ombres de \(2px\) en couleur d’accent).
+  - Taille minimale des éléments interactifs (notamment sur mobile) pour un confort optimal.
+
+- **Transitions et Animations** :
+  - Animations fluides (environ \(200ms\)) sur les actions de survol et de clic, garantissant des retours visuels subtils.
+  - Utilisation d’animations non distrayantes qui renforcent l’aspect intuitif sans alourdir la navigation.
+
+---
+
+## Conclusion
+
+La direction artistique de l’application "Châtaigne" repose sur une identité visuelle unifiée à travers ses modules Catalog, Location et Analytics. L’harmonie entre typographie, couleurs, espacements et organisation des composants offre une expérience moderne, accessible et intuitive.  
+Chaque élément – du choix des polices à la gestion des interactions – est pensé pour garantir une interface à la fois élégante et fonctionnelle, tout en assurant une cohérence parfaite entre esthétique et utilisabilité.
+
+Les modifications récentes mettent en avant une couleur primaire désormais orientée vers le vert, adoptée par les boutons d'action en vert WhatsApp (\(\#25D366\)), renforçant ainsi l'identité visuelle dynamique et reconnaissable de l'application.
+
+Ce document détaille l’ensemble des éléments visuels et interactifs, permettant à tout designer senior ou spécialiste de l’UX/UI de comprendre avec précision l’âme de notre application, même en l’absence d’une référence visuelle directe.
