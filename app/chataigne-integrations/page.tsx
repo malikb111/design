@@ -79,7 +79,7 @@ export default function IntegrationsPage() {
         </svg>
       ),
       isConnected: true,
-      modale: <ModaleHubrise />,
+      href: "/chataigne-integrations/hubrise",
     },
     {
       id: "printer",
