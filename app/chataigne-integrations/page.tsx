@@ -31,6 +31,7 @@ import {
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 import { IntegrationCard } from "./components/Card-integration";
+import ModaleHubrise from "./components/modale-hubrise";
 
 export default function IntegrationsPage() {
   const integrations = [
@@ -78,6 +79,7 @@ export default function IntegrationsPage() {
         </svg>
       ),
       isConnected: true,
+      modale: <ModaleHubrise />,
     },
     {
       id: "printer",
