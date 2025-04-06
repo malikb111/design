@@ -32,6 +32,14 @@ import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 import { IntegrationCard } from "./components/Card-integration";
 import ModaleHubrise from "./components/modale-hubrise";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function IntegrationsPage() {
   const integrations = [
@@ -104,6 +112,18 @@ export default function IntegrationsPage() {
     },
   ];
 
+  const [authCode] = useState(() => {
+    const uuid = crypto.randomUUID(); // Génère un UUID v4
+    const date = new Date();
+    const expDate = date.setFullYear(date.getFullYear() + 1); // Date d'expiration dans 1 an
+    const expDateStr = new Date(expDate)
+      .toISOString()
+      .slice(0, 10)
+      .replace(/-/g, "");
+
+    return `${uuid}-${expDateStr}`;
+  });
+
   return (
     <div className="min-h-screen">
       <Sidebar />
@@ -122,9 +142,77 @@ export default function IntegrationsPage() {
 
         {/* Grid d'intégrations */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {integrations.map((integration) => (
-            <IntegrationCard key={integration.id} integration={integration} />
-          ))}
+          {integrations.map((integration) =>
+            integration.id === "hubrise" ? (
+              <Dialog key={integration.id}>
+                <DialogTrigger asChild>
+                  <div className="cursor-pointer">
+                    <IntegrationCard integration={integration} />
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden">
+                  <div className="bg-[#25D366]/10 p-6 flex items-center gap-4">
+                    <div className="bg-white p-3 rounded-full">
+                      <svg
+                        className="w-8 h-8 text-[#25D366]"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.8c3.977 0 7.2 3.223 7.2 7.2s-3.223 7.2-7.2 7.2-7.2-3.223-7.2-7.2 3.223-7.2 7.2-7.2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-[#212121]">
+                        Finaliser l'intégration
+                      </h3>
+                      <p className="text-[#757575] text-sm">
+                        Une dernière étape pour connecter Hubrise
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="space-y-6">
+                      <div className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                        <div className="flex items-center gap-2 mb-2">
+                          <p className="text-sm font-medium text-gray-600">
+                            Code d'autorisation généré
+                          </p>
+                        </div>
+                        <p className="font-mono text-sm tracking-wide text-[#212121] select-all whitespace-nowrap overflow-x-auto">
+                          {authCode}
+                        </p>
+                      </div>
+
+                      <p className="text-sm text-[#757575] leading-relaxed">
+                        En confirmant, vous permettez la synchronisation
+                        automatique de vos commandes et la gestion centralisée
+                        de votre établissement.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 bg-gray-50 border-t border-gray-100 flex justify-end gap-3">
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="text-[#757575]">
+                        Annuler
+                      </Button>
+                    </DialogTrigger>
+                    <Button
+                      className="bg-[#25D366] hover:bg-[#25D366]/90 text-white px-8"
+                      onClick={() => {
+                        /* Logique de confirmation */
+                      }}
+                    >
+                      Connecter
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            ) : (
+              <IntegrationCard key={integration.id} integration={integration} />
+            )
+          )}
         </div>
       </main>
     </div>
