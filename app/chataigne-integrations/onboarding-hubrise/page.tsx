@@ -113,7 +113,7 @@ export default function OnboardingHubrisePage() {
         {step === 1 ? (
           <div className="space-y-6">
             <div className="text-center space-y-1.5">
-              <h1 className="text-2xl font-semibold text-[#212121]">
+              <h1 className="text-2xl text-[#212121]">
                 Connectons votre menu Hubrise
               </h1>
             </div>
