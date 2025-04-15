@@ -16,6 +16,7 @@ export default function Step2({ onNext, onPrevious }: Step2Props) {
     businessName: "Nom de l'entreprise",
     phoneNumber: "+33 6 12 34 56 78",
     about: "À propos de votre entreprise",
+    description: "Description détaillée de vos produits et services",
     address: "Votre adresse",
     website: "votre-site.com",
   });
@@ -152,7 +153,25 @@ export default function Step2({ onNext, onPrevious }: Step2Props) {
               value={profileData.about}
               onChange={handleChange}
               className="border-gray-200 focus:border-[#25D366] focus:ring-[#25D366]/10 resize-none min-h-[80px]"
-              placeholder="Description de votre entreprise"
+              placeholder="Description courte de votre entreprise"
+            />
+          </div>
+
+          {/* Description */}
+          <div className="space-y-2">
+            <label
+              htmlFor="description"
+              className="text-sm font-medium text-[#212121]"
+            >
+              Description
+            </label>
+            <Textarea
+              id="description"
+              name="description"
+              value={profileData.description}
+              onChange={handleChange}
+              className="border-gray-200 focus:border-[#25D366] focus:ring-[#25D366]/10 resize-none min-h-[80px]"
+              placeholder="Description détaillée de vos produits et services"
             />
           </div>
 

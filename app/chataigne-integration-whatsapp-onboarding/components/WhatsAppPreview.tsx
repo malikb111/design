@@ -6,6 +6,7 @@ interface WhatsAppPreviewProps {
   businessName?: string;
   phoneNumber?: string;
   about?: string;
+  description?: string;
   address?: string;
   website?: string;
 }
@@ -15,6 +16,7 @@ export default function WhatsAppPreview({
   businessName = "Nom de l'entreprise",
   phoneNumber = "+33 6 12 34 56 78",
   about = "À propos de votre entreprise",
+  description = "Description détaillée de vos produits et services",
   address = "Votre adresse",
   website = "votre-site.com",
 }: WhatsAppPreviewProps) {
@@ -25,7 +27,7 @@ export default function WhatsAppPreview({
   };
 
   return (
-    <div className="w-full max-w-[320px] border border-gray-700 rounded-xl overflow-hidden bg-[#111B21] shadow-sm">
+    <div className="w-full max-w-[320px] border border-gray-700 rounded-xl overflow-hidden bg-[#0B141A] shadow-sm">
       {/* Header avec le statut et les icônes */}
       <div className="bg-[#202C33] text-white py-2 px-4">
         <div className="flex items-center">
@@ -59,15 +61,23 @@ export default function WhatsAppPreview({
       {/* Informations du profil */}
       <div className="bg-[#111B21] mt-2">
         {/* À propos */}
-        <div className="py-3 px-4 border-b border-[#202C33]">
+        <div className="py-3 px-4 border-b border-[#2A3942]">
           <p className="text-xs text-[#8696A0] mb-1">À propos</p>
           <p className="text-sm text-white break-words">
             {truncateText(about, 100)}
           </p>
         </div>
 
+        {/* Description */}
+        <div className="py-3 px-4 border-b border-[#2A3942]">
+          <p className="text-xs text-[#8696A0] mb-1">Description</p>
+          <p className="text-sm text-white break-words">
+            {truncateText(description, 100)}
+          </p>
+        </div>
+
         {/* Adresse */}
-        <div className="py-3 px-4 border-b border-[#202C33]">
+        <div className="py-3 px-4 border-b border-[#2A3942]">
           <p className="text-xs text-[#8696A0] mb-1">Adresse</p>
           <p className="text-sm text-white break-words">
             {truncateText(address, 60)}
@@ -77,7 +87,7 @@ export default function WhatsAppPreview({
         {/* Site web */}
         <div className="py-3 px-4">
           <p className="text-xs text-[#8696A0] mb-1">Site web</p>
-          <p className="text-sm text-[#00A884] underline break-words">
+          <p className="text-sm text-[#25D366] underline break-words">
             {truncateText(website, 40)}
           </p>
         </div>

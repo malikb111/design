@@ -39,7 +39,7 @@ export default function WhatsAppFlowPreview({
 
       {/* Flow de commande popup */}
       <div className="flex-1 bg-[#111B21] rounded-t-xl border-t border-[#2A3942] shadow-lg relative z-20">
-        {/* Titre du flow */}
+        {/* Titre du flow - centré */}
         <div className="border-b border-[#2A3942] py-2.5 px-4">
           <h2 className="text-base font-semibold text-white text-center">
             Livraison
@@ -67,14 +67,14 @@ export default function WhatsAppFlowPreview({
           </div>
 
           {/* Message de bienvenue en H1 */}
-          <div className="text-center mt-1">
+          <div className="text-left mt-1">
             <h1 className="text-white text-xl font-semibold">
               Bonjour, bienvenue chez {restaurantName}
             </h1>
           </div>
 
           {/* Question en H2 plus petit */}
-          <div className="text-center mb-1">
+          <div className="text-left mb-1">
             <h2 className="text-white text-sm font-normal text-[#8696A0]">
               Comment souhaiteriez-vous récupérer votre commande ?
             </h2>

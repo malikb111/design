@@ -7,16 +7,46 @@ import Step2 from "./components/step2";
 import Step3 from "./components/step3";
 import Step4 from "./components/step4";
 import Step5 from "./components/step5";
+import Step6 from "./components/step6";
+import Step7 from "./components/step7";
+import Step8 from "./components/step8";
 
 export default function ChataigneIntegrationWhatsappOnboarding() {
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 5; // Mis à jour à 5 étapes pour l'onboarding
+  const [flowConfig, setFlowConfig] = useState({
+    enableInfoPage: true,
+  });
+  const totalSteps = 8; // Mis à jour à 8 étapes pour inclure la configuration des catégories
 
   const handleNextStep = () => {
+    // Si on est à l'étape 6 et que la page d'information n'est pas activée, on saute l'étape 7
+    if (currentStep === 6) {
+      // Vérifier si la page d'information est activée dans le composant Step6
+      const flowPages = document.querySelectorAll("[data-flow-page]");
+      const infoPageEnabled = Array.from(flowPages).some(
+        (page) =>
+          page.getAttribute("data-flow-page") === "information" &&
+          page.getAttribute("data-enabled") === "true"
+      );
+
+      setFlowConfig((prev) => ({ ...prev, enableInfoPage: infoPageEnabled }));
+
+      if (!infoPageEnabled) {
+        setCurrentStep(Math.min(currentStep + 2, totalSteps));
+        return;
+      }
+    }
+
     setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
   };
 
   const handlePrevStep = () => {
+    // Si on est à l'étape 7 et que la page d'information n'est pas activée, on revient à l'étape 5
+    if (currentStep === 7 && !flowConfig.enableInfoPage) {
+      setCurrentStep(5);
+      return;
+    }
+
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
@@ -57,7 +87,15 @@ export default function ChataigneIntegrationWhatsappOnboarding() {
           {currentStep === 5 && (
             <Step5 onNext={handleNextStep} onPrevious={handlePrevStep} />
           )}
-          {/* Les autres étapes seront ajoutées ultérieurement */}
+          {currentStep === 6 && (
+            <Step6 onNext={handleNextStep} onPrevious={handlePrevStep} />
+          )}
+          {currentStep === 7 && (
+            <Step7 onNext={handleNextStep} onPrevious={handlePrevStep} />
+          )}
+          {currentStep === 8 && (
+            <Step8 onNext={handleNextStep} onPrevious={handlePrevStep} />
+          )}
         </div>
       </main>
     </div>

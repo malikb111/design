@@ -227,7 +227,7 @@ export default function Step5({ onNext, onPrevious }: Step5Props) {
               className="bg-[#25D366] hover:bg-[#25D366]/90 text-white"
               onClick={handleActivation}
             >
-              {enableFlow ? "Configurer le flux" : "Terminer sans activer"}
+              {enableFlow ? "Activer et configurer" : "Terminer sans activer"}
             </Button>
           </div>
         </div>
