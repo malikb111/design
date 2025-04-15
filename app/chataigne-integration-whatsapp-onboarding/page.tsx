@@ -4,10 +4,13 @@ import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Step1 from "./components/step1";
 import Step2 from "./components/step2";
+import Step3 from "./components/step3";
+import Step4 from "./components/step4";
+import Step5 from "./components/step5";
 
 export default function ChataigneIntegrationWhatsappOnboarding() {
   const [currentStep, setCurrentStep] = useState(1);
-  const totalSteps = 4; // On prévoit 4 étapes pour l'onboarding
+  const totalSteps = 5; // Mis à jour à 5 étapes pour l'onboarding
 
   const handleNextStep = () => {
     setCurrentStep((prev) => Math.min(prev + 1, totalSteps));
@@ -44,6 +47,15 @@ export default function ChataigneIntegrationWhatsappOnboarding() {
           {currentStep === 1 && <Step1 onNext={handleNextStep} />}
           {currentStep === 2 && (
             <Step2 onNext={handleNextStep} onPrevious={handlePrevStep} />
+          )}
+          {currentStep === 3 && (
+            <Step3 onNext={handleNextStep} onPrevious={handlePrevStep} />
+          )}
+          {currentStep === 4 && (
+            <Step4 onNext={handleNextStep} onPrevious={handlePrevStep} />
+          )}
+          {currentStep === 5 && (
+            <Step5 onNext={handleNextStep} onPrevious={handlePrevStep} />
           )}
           {/* Les autres étapes seront ajoutées ultérieurement */}
         </div>
