@@ -18,13 +18,6 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import WhatsAppCategoryPreview from "./WhatsAppCategoryPreview";
 
 interface Step8Props {
@@ -45,8 +38,6 @@ export default function Step8({ onNext, onPrevious }: Step8Props) {
   ]);
 
   const [newCategory, setNewCategory] = useState("");
-  const [selectedAddOnCategory, setSelectedAddOnCategory] =
-    useState<string>("none");
   const [hasCatalog, setHasCatalog] = useState(true);
 
   const handleAddCategory = () => {
@@ -139,22 +130,6 @@ export default function Step8({ onNext, onPrevious }: Step8Props) {
 
           {/* Côté droit: formulaire */}
           <div className="flex-1 space-y-6">
-            <div className="bg-amber-50 border border-amber-200 rounded-md p-4 mb-4">
-              <div className="flex gap-3">
-                <Info className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm text-amber-800 font-medium mb-1">
-                    Mode démo
-                  </p>
-                  <p className="text-sm text-amber-700">
-                    Cette configuration est en mode démo puisqu'aucun catalogue
-                    n'est connecté. Les modifications seront effectives lorsque
-                    vous connecterez un catalogue.
-                  </p>
-                </div>
-              </div>
-            </div>
-
             {/* Ajouter une catégorie */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-[#212121]">
@@ -243,35 +218,6 @@ export default function Step8({ onNext, onPrevious }: Step8Props) {
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* Catégorie de vente additionnelle */}
-            <div className="space-y-2 pt-4">
-              <label className="text-sm font-medium text-[#212121]">
-                Catégorie de vente additionnelle
-              </label>
-              <p className="text-xs text-[#757575] mb-2">
-                Cette catégorie sera proposée aux clients après leur commande
-                principale
-              </p>
-              <Select
-                value={selectedAddOnCategory}
-                onValueChange={setSelectedAddOnCategory}
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Sélectionner une catégorie" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="none">
-                    Aucune vente additionnelle
-                  </SelectItem>
-                  {categories.map((category) => (
-                    <SelectItem key={category.id} value={category.id}>
-                      {category.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
             </div>
 
             {/* Boutons d'action */}
