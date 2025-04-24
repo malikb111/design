@@ -55,181 +55,10 @@ export default function ChataigneSettings() {
         {/* Content */}
         <div className="p-8">
           <div className="grid grid-cols-12 gap-8">
-            {/* Sidebar de navigation paramètres */}
-            <nav className="col-span-3">
-              <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100">
-                <div className="divide-y divide-gray-100">
-                  {/* Section établissement */}
-                  <div>
-                    <div className="px-4 py-3">
-                      <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                        Établissement
-                      </h3>
-                    </div>
-
-                    <div className="px-2 pb-2">
-                      <button
-                        onClick={() => setActiveSection("informations")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "informations"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <Building className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">
-                            Informations générales
-                          </span>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => setActiveSection("adresse")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "adresse"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <MapPin className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">
-                            Localisation & Adresse
-                          </span>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => setActiveSection("horaires")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "horaires"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <Clock className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">
-                            Horaires d'ouverture
-                          </span>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Section commandes */}
-                  <div>
-                    <div className="px-4 py-3">
-                      <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                        Commandes
-                      </h3>
-                    </div>
-
-                    <div className="px-2 pb-2">
-                      <button
-                        onClick={() => setActiveSection("livraison")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "livraison"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <Truck className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">Livraison</span>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => setActiveSection("commande")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "commande"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <Package className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">
-                            Options de commande
-                          </span>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => setActiveSection("paiement")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "paiement"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <CreditCard className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">Paiement</span>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-
-                  {/* Section compte */}
-                  <div>
-                    <div className="px-4 py-3">
-                      <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                        Compte
-                      </h3>
-                    </div>
-
-                    <div className="px-2 pb-2">
-                      <button
-                        onClick={() => setActiveSection("profil")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "profil"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <User className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">Mon profil</span>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => setActiveSection("notifications")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "notifications"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <Mail className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">Notifications</span>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => setActiveSection("support")}
-                        className={`w-full text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
-                          activeSection === "support"
-                            ? "bg-[#25D366]/10 text-[#25D366]"
-                            : "text-gray-700 hover:bg-gray-50"
-                        }`}
-                      >
-                        <HelpCircle className="h-5 w-5" />
-                        <div>
-                          <span className="font-medium">Aide & Support</span>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Barre de recherche */}
-              <div className="mt-4">
+            {/* Sidebar de navigation paramètres - devient navbar sur mobile */}
+            <nav className="col-span-12 lg:col-span-3 order-1 lg:order-1">
+              {/* Barre de recherche - cachée sur mobile */}
+              <div className="hidden lg:block mt-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                   <input
@@ -239,10 +68,192 @@ export default function ChataigneSettings() {
                   />
                 </div>
               </div>
+
+              {/* Navigation - scrollable horizontalement sur mobile */}
+              <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 lg:overflow-visible">
+                <div className="flex lg:block overflow-x-auto whitespace-nowrap lg:whitespace-normal">
+                  {/* Section établissement */}
+                  <div className="lg:border-b lg:border-gray-100">
+                    <div className="hidden lg:block px-4 py-3">
+                      <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        Établissement
+                      </h3>
+                    </div>
+
+                    <div className="flex lg:block px-2 pb-2">
+                      <button
+                        onClick={() => setActiveSection("informations")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "informations"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <Building className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Informations générales
+                          </span>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => setActiveSection("adresse")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "adresse"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <MapPin className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Localisation & Adresse
+                          </span>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => setActiveSection("horaires")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "horaires"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <Clock className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Horaires d'ouverture
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Section commandes */}
+                  <div className="lg:border-b lg:border-gray-100">
+                    <div className="hidden lg:block px-4 py-3">
+                      <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        Commandes
+                      </h3>
+                    </div>
+
+                    <div className="flex lg:block px-2 pb-2">
+                      <button
+                        onClick={() => setActiveSection("livraison")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "livraison"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <Truck className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Livraison
+                          </span>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => setActiveSection("commande")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "commande"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <Package className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Options de commande
+                          </span>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => setActiveSection("paiement")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "paiement"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <CreditCard className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Paiement
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Section compte */}
+                  <div>
+                    <div className="hidden lg:block px-4 py-3">
+                      <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        Compte
+                      </h3>
+                    </div>
+
+                    <div className="flex lg:block px-2 pb-2">
+                      <button
+                        onClick={() => setActiveSection("profil")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "profil"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <User className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Mon profil
+                          </span>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => setActiveSection("notifications")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "notifications"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <Mail className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Notifications
+                          </span>
+                        </div>
+                      </button>
+
+                      <button
+                        onClick={() => setActiveSection("support")}
+                        className={`flex-shrink-0 text-left flex items-center gap-3 px-3 py-2.5 rounded-lg ${
+                          activeSection === "support"
+                            ? "bg-[#25D366]/10 text-[#25D366]"
+                            : "text-gray-700 hover:bg-gray-50"
+                        }`}
+                      >
+                        <HelpCircle className="h-5 w-5" />
+                        <div>
+                          <span className="font-medium whitespace-nowrap">
+                            Aide & Support
+                          </span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </nav>
 
             {/* Section principale de contenu */}
-            <div className="col-span-9">
+            <div className="col-span-12 lg:col-span-9 order-2 lg:order-2">
               {/* Section Informations générales */}
               {activeSection === "informations" && (
                 <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
