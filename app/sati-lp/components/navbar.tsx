@@ -2,13 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Globe } from "lucide-react";
+import { Globe, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [showBackground, setShowBackground] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +56,7 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Navigation Links */}
+            {/* Navigation Links - Desktop */}
             <div className="hidden md:flex items-center gap-x-[30px]">
               <button
                 className={`relative ${
@@ -96,7 +97,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Right side buttons */}
+          {/* Right side buttons - Desktop */}
           <div className="hidden md:flex items-center space-x-4">
             <button
               className={`${
@@ -121,7 +122,72 @@ export default function Navbar() {
               Demander un devis
             </button>
           </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`${
+                showBackground ? "text-neutral-900" : "text-white"
+              } p-2`}
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-4 pb-4">
+            <div className="flex flex-col gap-4">
+              <button
+                className={`text-left ${
+                  showBackground ? "text-neutral-900" : "text-white"
+                } px-3 py-2 text-sm font-medium`}
+              >
+                Nos services
+              </button>
+              <button
+                className={`text-left ${
+                  showBackground ? "text-neutral-900" : "text-white"
+                } px-3 py-2 text-sm font-medium`}
+              >
+                Société
+              </button>
+              <button
+                className={`text-left ${
+                  showBackground ? "text-neutral-900" : "text-white"
+                } px-3 py-2 text-sm font-medium`}
+              >
+                Contact
+              </button>
+              <div className="border-t border-gray-200 my-2"></div>
+              <div className="flex items-center gap-4 px-3">
+                <button
+                  className={`${
+                    showBackground ? "text-neutral-900" : "text-white"
+                  }`}
+                >
+                  <Globe className="h-5 w-5" />
+                </button>
+                <button
+                  className={`${
+                    showBackground ? "text-neutral-900" : "text-white"
+                  } text-sm font-medium`}
+                >
+                  Se connecter
+                </button>
+              </div>
+              <button className="mx-3 text-white px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] transition-opacity">
+                Demander un devis
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

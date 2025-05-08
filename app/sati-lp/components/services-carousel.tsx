@@ -9,15 +9,15 @@ export function AppleCardsCarouselDemo() {
   ));
 
   return (
-    <div className="w-full h-full py-20">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="h-[0.5px] w-20 bg-gradient-to-r from-[#CC1B23] to-[#FF232F] rounded-full"></div>
-          <span className="text-sm font-medium text-[#FF232F] uppercase tracking-wider">
+    <div className="w-full h-full py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-3 md:gap-4 mb-6 md:mb-8">
+          <div className="h-[0.5px] w-16 md:w-20 bg-gradient-to-r from-[#CC1B23] to-[#FF232F] rounded-full"></div>
+          <span className="text-xs md:text-sm font-medium text-[#FF232F] uppercase tracking-wider">
             Nos Services
           </span>
         </div>
-        <h2 className="text-xl md:text-3xl font-bold text-neutral-900 font-sans max-w-3xl">
+        <h2 className="text-lg md:text-xl lg:text-3xl font-bold text-neutral-900 font-sans max-w-3xl">
           Les services que nous proposons
         </h2>
       </div>
@@ -33,9 +33,9 @@ const DummyContent = () => {
         return (
           <div
             key={"dummy-content" + index}
-            className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl mb-4"
+            className="bg-[#F5F5F7] dark:bg-neutral-800 p-4 md:p-8 lg:p-14 rounded-2xl md:rounded-3xl mb-4"
           >
-            <p className="text-neutral-600 dark:text-neutral-400 text-base md:text-2xl font-sans max-w-3xl mx-auto">
+            <p className="text-neutral-600 dark:text-neutral-400 text-sm md:text-base lg:text-2xl font-sans max-w-3xl mx-auto">
               <span className="font-bold text-neutral-700 dark:text-neutral-200">
                 The first rule of Apple club is that you boast about Apple club.
               </span>{" "}
@@ -49,7 +49,7 @@ const DummyContent = () => {
               alt="Macbook mockup from Aceternity UI"
               height="500"
               width="500"
-              className="md:w-1/2 md:h-1/2 h-full w-full mx-auto object-contain"
+              className="w-full h-auto md:w-1/2 md:h-1/2 mx-auto object-contain mt-4 md:mt-6"
             />
           </div>
         );
