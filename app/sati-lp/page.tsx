@@ -2,6 +2,7 @@ import Navbar from "./components/navbar";
 import { AppleCardsCarouselDemo } from "./components/services-carousel";
 import WhyChooseUs from "./components/why-section";
 import Form from "./components/form";
+import { Footer1 } from "./components/footer";
 export default function SatiLp() {
   return (
     <main className="bg-[#f2f2f2]">
@@ -62,6 +63,7 @@ export default function SatiLp() {
       {/* Why Choose Us Section */}
       <WhyChooseUs />
       <Form />
+      <Footer1 />
     </main>
   );
 }
