@@ -86,25 +86,24 @@ const data = [
   {
     category: "Services douaniers",
     title: "Nous vous accompagnons dans vos formalités douanières",
-    src: "/4.png",
+    src: "https://images.unsplash.com/photo-1521791055366-0d553872125f?q=80&w=2069&auto=format&fit=crop",
     content: <DummyContent />,
     description:
       "Expertise complète en dédouanement et conformité réglementaire pour faciliter vos échanges internationaux.",
   },
   {
-    category: "iOS",
-    title: "Photography just got better.",
-    src: "https://images.unsplash.com/photo-1602081957921-9137a5d6eaee?q=80&w=2793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    category: "Services spéciaux",
+    title: "Nous vous accompagnons dans différentes situations.",
+    src: "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?q=80&w=2072&auto=format&fit=crop",
     content: <DummyContent />,
     description:
-      "Découvrez une nouvelle dimension de la photographie avec nos dernières innovations.",
+      "Courses spéciales de transports routiers, Gestion des marchandises réglementées, Emballage, Assurance de transport, Interventions spéciales au service voyageurs de l'aéroport (mise en hold), Produits dangereux",
   },
   {
-    category: "Hiring",
-    title: "Hiring for a Staff Software Engineer",
-    src: "https://images.unsplash.com/photo-1511984804822-e16ba72f5848?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    category: "Entreposage",
+    title: "Nous stockons vos marchandises.",
+    src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop",
     content: <DummyContent />,
-    description:
-      "Rejoignez notre équipe d'experts et participez à l'innovation de demain.",
+    description: "Entreposage sous-douane, Entreposage libre",
   },
 ];
