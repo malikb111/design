@@ -15,9 +15,9 @@ export default function SatiLp() {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover scale-x-[-1]"
           >
-            <source src="/203681-921832588_medium.mp4" type="video/mp4" />
+            <source src="/237249_small.mp4" type="video/mp4" />
           </video>
           {/* Overlay pour assombrir légèrement la vidéo */}
           <div className="absolute inset-0 bg-black/30"></div>
