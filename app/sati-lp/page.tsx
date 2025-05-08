@@ -1,11 +1,12 @@
 import Navbar from "./components/navbar";
 import { AppleCardsCarouselDemo } from "./components/services-carousel";
+import WhyChooseUs from "./components/why-section";
 
 export default function SatiLp() {
   return (
-    <main className="bg-[#0D0D0D]">
-      <Navbar/>
-      
+    <main className="bg-[#f2f2f2]">
+      <Navbar />
+
       {/* Hero Section */}
       <section className="h-screen relative">
         {/* Video Background */}
@@ -34,20 +35,17 @@ export default function SatiLp() {
                 Société anonyme de transport Internationaux
               </h2>
               <h3 className="text-xl text-white/80 mb-8">
-                Exerce depuis 1963, Basée à Genève<br/>
+                Exerce depuis 1963, Basée à Genève
+                <br />
                 Votre partenaire logistique depuis plus de 50 ans
               </h3>
 
               {/* CTA Buttons */}
               <div className="flex gap-4">
-                <button 
-                  className="text-white px-6 py-3 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] hover:opacity-90 transition-opacity"
-                >
+                <button className="text-white px-6 py-3 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] hover:opacity-90 transition-opacity">
                   Demander un devis
                 </button>
-                <button 
-                  className="text-white px-6 py-3 rounded-md text-sm font-medium bg-[#202A2D]"
-                >
+                <button className="text-white px-6 py-3 rounded-md text-sm font-medium bg-[#202A2D]">
                   Nos services
                 </button>
               </div>
@@ -57,7 +55,12 @@ export default function SatiLp() {
       </section>
 
       {/* Services Section */}
-      <AppleCardsCarouselDemo/>
+      <div className="pb-0">
+        <AppleCardsCarouselDemo />
+      </div>
+
+      {/* Why Choose Us Section */}
+      <WhyChooseUs />
     </main>
   );
 }

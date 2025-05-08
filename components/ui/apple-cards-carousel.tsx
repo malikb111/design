@@ -93,20 +93,20 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     >
       <div className="relative w-full">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
+          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] "
           ref={carouselRef}
           onScroll={checkScrollability}
         >
           <div
             className={cn(
-              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l",
+              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"
             )}
           ></div>
 
           <div
             className={cn(
               "flex flex-row justify-start gap-4 pl-4",
-              "mx-auto max-w-7xl", // remove max-w-4xl if you want the carousel to span the full width of its container
+              "mx-auto max-w-7xl" // remove max-w-4xl if you want the carousel to span the full width of its container
             )}
           >
             {items.map((item, index) => (
@@ -133,7 +133,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
             ))}
           </div>
         </div>
-        <div className="mr-10 flex justify-end gap-2">
+        <div className="max-w-7xl mx-auto flex justify-end gap-2 pr-4 sm:pr-6 lg:pr-8">
           <button
             className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
             onClick={scrollLeft}
@@ -289,7 +289,7 @@ export const BlurImage = ({
       className={cn(
         "h-full w-full transition duration-300",
         isLoading ? "blur-sm" : "blur-0",
-        className,
+        className
       )}
       onLoad={() => setLoading(false)}
       src={src as string}
