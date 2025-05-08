@@ -3,10 +3,41 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Globe } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function Navbar() {
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [showBackground, setShowBackground] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      const isScrollingDown = currentScrollPos > prevScrollPos;
+
+      // Gestion de la visibilité
+      setVisible(!isScrollingDown || currentScrollPos < 10);
+      
+      // Gestion du background : apparaît uniquement en scrollant vers le haut et si on n'est pas tout en haut
+      if (!isScrollingDown && currentScrollPos > 10) {
+        setShowBackground(true);
+      } else {
+        setShowBackground(false);
+      }
+
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [prevScrollPos]);
+
   return (
-    <nav className="sticky top-0 z-50 py-4 bg-transparent">
+    <nav 
+      className={`fixed w-full top-0 z-50 py-4 transition-all duration-300 ${
+        visible ? 'translate-y-0' : '-translate-y-full'
+      } ${showBackground ? 'bg-[#0D0D0D]' : 'bg-transparent'}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Left side: Logo and Navigation Links */}
