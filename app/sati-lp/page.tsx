@@ -10,7 +10,7 @@ export default function SatiLp() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="h-[100svh] relative">
+      <section id="accueil" className="h-[100svh] relative">
         {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
           <video
@@ -44,12 +44,18 @@ export default function SatiLp() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <button className="w-full sm:w-auto text-white px-4 sm:px-6 py-3 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] hover:opacity-90 transition-opacity">
+                <a
+                  href="#contact"
+                  className="w-full sm:w-auto text-white px-4 sm:px-6 py-3 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] hover:opacity-90 transition-opacity text-center"
+                >
                   Demander un devis
-                </button>
-                <button className="w-full sm:w-auto text-white px-4 sm:px-6 py-3 rounded-md text-sm font-medium bg-[#202A2D]">
+                </a>
+                <a
+                  href="#services"
+                  className="w-full sm:w-auto text-white px-4 sm:px-6 py-3 rounded-md text-sm font-medium bg-[#202A2D] text-center"
+                >
                   Nos services
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -57,13 +63,20 @@ export default function SatiLp() {
       </section>
 
       {/* Services Section */}
-      <div className="pb-0">
+      <section id="services" className="pb-0">
         <AppleCardsCarouselDemo />
-      </div>
+      </section>
 
       {/* Why Choose Us Section */}
-      <WhyChooseUs />
-      <Form />
+      <section id="societe">
+        <WhyChooseUs />
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact">
+        <Form />
+      </section>
+
       <Footer1 />
     </main>
   );

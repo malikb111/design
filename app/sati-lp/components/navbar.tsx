@@ -33,6 +33,25 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
 
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    targetId: string
+  ) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    const element = document.getElementById(targetId);
+    if (element) {
+      const offset = 80; // Hauteur de la navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <nav
       className={`fixed w-full top-0 z-50 py-4 transition-all duration-300 ${
@@ -45,7 +64,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-12">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <div>
+              <a href="#accueil" onClick={(e) => handleClick(e, "accueil")}>
                 <Image
                   src="/logo_sati.svg"
                   alt="Logo SATI"
@@ -53,12 +72,14 @@ export default function Navbar() {
                   height={62}
                   className="h-12 w-auto"
                 />
-              </div>
+              </a>
             </div>
 
             {/* Navigation Links - Desktop */}
             <div className="hidden md:flex items-center gap-x-[30px]">
-              <button
+              <a
+                href="#services"
+                onClick={(e) => handleClick(e, "services")}
                 className={`relative ${
                   showBackground ? "text-neutral-900" : "text-white"
                 } px-3 py-2 text-sm font-medium group`}
@@ -69,8 +90,10 @@ export default function Navbar() {
                     showBackground ? "bg-neutral-900" : "bg-white"
                   } group-hover:w-[calc(100%-24px)] transition-all duration-500 ease-in-out origin-left`}
                 ></span>
-              </button>
-              <button
+              </a>
+              <a
+                href="#societe"
+                onClick={(e) => handleClick(e, "societe")}
                 className={`relative ${
                   showBackground ? "text-neutral-900" : "text-white"
                 } px-3 py-2 text-sm font-medium group`}
@@ -81,8 +104,10 @@ export default function Navbar() {
                     showBackground ? "bg-neutral-900" : "bg-white"
                   } group-hover:w-[calc(100%-24px)] transition-all duration-500 ease-in-out origin-left`}
                 ></span>
-              </button>
-              <button
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => handleClick(e, "contact")}
                 className={`relative ${
                   showBackground ? "text-neutral-900" : "text-white"
                 } px-3 py-2 text-sm font-medium group`}
@@ -93,7 +118,7 @@ export default function Navbar() {
                     showBackground ? "bg-neutral-900" : "bg-white"
                   } group-hover:w-[calc(100%-24px)] transition-all duration-500 ease-in-out origin-left`}
                 ></span>
-              </button>
+              </a>
             </div>
           </div>
 
@@ -118,9 +143,13 @@ export default function Navbar() {
                 } group-hover:w-[calc(100%-24px)] transition-all duration-500 ease-in-out origin-left`}
               ></span>
             </button>
-            <button className="text-white px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] transition-opacity">
+            <a
+              href="#contact"
+              onClick={(e) => handleClick(e, "contact")}
+              className="text-white px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] transition-opacity hover:opacity-90"
+            >
               Demander un devis
-            </button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -144,27 +173,33 @@ export default function Navbar() {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4">
             <div className="flex flex-col gap-4">
-              <button
+              <a
+                href="#services"
+                onClick={(e) => handleClick(e, "services")}
                 className={`text-left ${
                   showBackground ? "text-neutral-900" : "text-white"
                 } px-3 py-2 text-sm font-medium`}
               >
                 Nos services
-              </button>
-              <button
+              </a>
+              <a
+                href="#societe"
+                onClick={(e) => handleClick(e, "societe")}
                 className={`text-left ${
                   showBackground ? "text-neutral-900" : "text-white"
                 } px-3 py-2 text-sm font-medium`}
               >
                 Société
-              </button>
-              <button
+              </a>
+              <a
+                href="#contact"
+                onClick={(e) => handleClick(e, "contact")}
                 className={`text-left ${
                   showBackground ? "text-neutral-900" : "text-white"
                 } px-3 py-2 text-sm font-medium`}
               >
                 Contact
-              </button>
+              </a>
               <div className="border-t border-gray-200 my-2"></div>
               <div className="flex items-center gap-4 px-3">
                 <button
@@ -182,9 +217,13 @@ export default function Navbar() {
                   Se connecter
                 </button>
               </div>
-              <button className="mx-3 text-white px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] transition-opacity">
+              <a
+                href="#contact"
+                onClick={(e) => handleClick(e, "contact")}
+                className="mx-3 text-white px-4 py-2 rounded-md text-sm font-medium bg-gradient-to-r from-[#CC1B23] via-[#CA161F] to-[#FF232F] transition-opacity hover:opacity-90 text-center"
+              >
                 Demander un devis
-              </button>
+              </a>
             </div>
           </div>
         )}
