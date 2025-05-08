@@ -32,7 +32,7 @@ function Feature() {
               </h3>
               <p className="text-lg max-w-xl lg:max-w-sm leading-relaxed tracking-tight text-neutral-700 text-justify">
                 Avec plus de 50 ans d'expérience dans le transport
-                international, SATI s'est imposée comme un partenaire logistique
+                international, SATI s'est imposé comme un partenaire logistique
                 de confiance. Notre expertise, notre réseau mondial et notre
                 engagement envers l'excellence font de nous le choix idéal pour
                 vos besoins en transport et logistique.
