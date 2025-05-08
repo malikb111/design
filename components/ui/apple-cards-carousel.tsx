@@ -26,6 +26,7 @@ type Card = {
   title: string;
   category: string;
   content: React.ReactNode;
+  description?: string;
 };
 
 export const CarouselContext = createContext<{
@@ -239,9 +240,9 @@ export const Card = ({
       <motion.button
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900"
+        className="relative z-10 flex h-80 w-56 flex-col items-start justify-between overflow-hidden rounded-3xl bg-gray-100 md:h-[40rem] md:w-96 dark:bg-neutral-900"
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-black/70" />
         <div className="relative z-40 p-8">
           <motion.p
             layoutId={layout ? `category-${card.category}` : undefined}
@@ -256,6 +257,13 @@ export const Card = ({
             {card.title}
           </motion.p>
         </div>
+        {card.description && (
+          <div className="relative z-40 p-8 mt-auto">
+            <motion.p className="text-left font-sans text-sm text-white md:text-base">
+              {card.description}
+            </motion.p>
+          </div>
+        )}
         <BlurImage
           src={card.src}
           alt={card.title}
