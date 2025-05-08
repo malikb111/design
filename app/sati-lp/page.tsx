@@ -23,7 +23,7 @@ export default function SatiLp() {
         <Navbar/>
         
         {/* Hero Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-48">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-64">
           <div className="max-w-3xl">
             <h1 className="text-7xl font-bold text-white mb-4 cal-sans">
               SATI
